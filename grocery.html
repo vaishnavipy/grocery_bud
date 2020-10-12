@@ -6,7 +6,7 @@
     <head>
     
     
-        <title>SideBar JavaScript</title>
+        <title>Grocery Buddy JavaScript</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="grocery.css"> 
        <script src="grocery.js"></script>  
@@ -14,151 +14,7 @@
        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/031e3862f6.js"></script>
 
-        <style>
-            body{
-
-                background-color: #F1F5F8;
-            }
-            #container{
-
-                background-color: white;
-                width: 40vw;
-                margin: auto;
-                text-align: center;
-                border-radius: 10px;
-                padding: 20px 20px;
-                padding-bottom: 40px;
-                overflow: hidden;
-                margin-top: 25vh;
-                height: auto;
-                box-shadow: 8px 8px 16px grey;
-                position: relative;
-            }
-
-            #container h1{
-                padding-top: 20px;
-                letter-spacing: 4px;
-                color:#063251;
-                font-family: 'Roboto', sans-serif;
-                
-            }
-           
-            #text{
-                width: 80%;
-                background-color: #F1F5F8;
-                border:0.5px solid #F1F5F8;
-                
-                border-top-left-radius: 10px;
-                border-bottom-left-radius: 10px;
-                font-size: 15px;
-                padding: 10px 10px;
-                margin: 0;
-
-
-            }
-
-            #submit{
-
-                background-color: #A5D5F8;
-                color:black;
-                font-size: 15px;
-                padding: 10px 5px;
-                margin: 0;
-                border: none;
-                border-top-right-radius: 10px;
-                border-bottom-right-radius: 10px;
-                letter-spacing: 3px;
-                cursor: pointer;
-
-                }
-
-                #submit:hover{
-
-                    color:white;
-                    background-color: #69bfc9;
-
-                    }
-
-                    
-                .edit{
-                    color:green;
-                    padding: 10px 5px;
-                    float:right;
-                    cursor: pointer;
-                }
-                .delete{
-                    color:red;
-                    padding:10px 5px;
-                    float:right;
-                    cursor: pointer;
-                }
-                .items{
-                    
-                    width: 95%;
-                    padding-top: 20px;
-                   text-align: left;
-                   padding: 10px;
-                    
-                   
-                }
-                #clear{
-                    letter-spacing: 4px;
-                    font-family: 'Roboto', sans-serif;
-                    font-weight: 300;
-                    color:red;
-                    cursor: pointer;
-                    clear: both;
-                    display: none;
-                }
-                #clear:hover{
-                    color: maroon    ;
-                }
-                #added{
-                    background-color: lightgreen;
-                    letter-spacing: 3px;
-                    font-size: 10px;
-                    color:darkgreen;
-                    padding: 5px;
-                    position: absolute;
-                    width: 80% ;
-                    margin: auto;
-                    left:60;
-                    display: none;
-                    
-
-                    }
-
-                #empty{
-                    letter-spacing: 3px;
-                    font-size: 10px;
-                    background-color: #ffcccb;
-                    color:darkred;
-                    padding: 5px;
-                    position: absolute;
-                    width: 80%;
-                    margin: auto;
-                    left:60;
-                    display: none;
-                   
-
-                }
-
-                #item_removed{
-                    letter-spacing: 3px;
-                    font-size: 10px;
-                    background-color: #ffcccb;
-                    color:darkred;
-                    padding: 5px;
-                    position: absolute;
-                    width: 80%;
-                    margin: auto;
-                    left:60;
-                    display: none;
-                   
-
-                }
-
-        </style>
+       
         
     
         
@@ -175,6 +31,8 @@
 
             <div id="item_removed">ITEM REMOVED</div>
 
+            <div id="value_changed">VALUE CHANGED</div>
+
             <h1>GROCERY BUD</h1>
           <input type="text" id="text" placeholder="eg:eggs"><input type="submit" value="Submit" id="submit"> 
 
@@ -185,110 +43,7 @@
         </div>
 
 
-        <script>
-
-            window.onload = function(){
-
-
-                    document.getElementById("submit").onclick = function(){
-
-                            let value = document.getElementById("text").value;
-
-                            if(value!= ""){
-
-                                document.getElementById("text").value ="";
-                           let para = document.createElement("P");
-                           let txtnode = document.createTextNode(value);
-
-                           let edit_icon = document.createElement("SPAN");
-                       edit_icon.innerHTML ='<i class="fa fa-edit"></i>';
-
-                       let delete_icon = document.createElement("SPAN");
-                       delete_icon.innerHTML='<i class="fa fa-trash"></i>';
-
-                           para.appendChild(txtnode);
-                        edit_icon.setAttribute("class","edit");
-
-                                delete_icon.setAttribute("class","delete");
-
-                                delete_icon.addEventListener("click",remove_item);
-
-                                para.appendChild(delete_icon);
-                        para.appendChild(edit_icon);
-                       
-
-                        para.setAttribute("class","items");
-
-                       // document.getElementById("container").innerHTML += para.innerHTML
-                       let container =  document.getElementById("container");
-
-                      container.insertBefore(para,container.lastElementChild);
-
-                      container.lastElementChild.style.display = "block"
-
-                      document.getElementById("added").style.display ="block";
-
-                      setTimeout(function(){
-                        document.getElementById("added").style.display ="none";
-
-                      },1000);
-                    
-                    }
-
-                    }
-
-                    document.getElementById("container").lastElementChild.onclick = function(){
-
-
-                       let items =  document.querySelectorAll(".items");
-
-                       items.forEach(elm => elm.remove());
-
-                       document.getElementById("empty").style.display ="block";
-                       let that = this;
-
-                        setTimeout(function(){
-
-                        document.getElementById("empty").style.display ="none";
-                        that.style.display = "none";
-                       },1000);
-
-                       
-                    }
-
-                   let delete_elms = document.querySelectorAll(".delete");
-
-                   delete_elms.forEach(elm => elm.addEventListener("click",remove_item));
-                    console.log(delete_elms)
-
-                    function remove_item(){
-                        console.log("clicked")
-
-                        this.parentNode.remove();
-
-                        document.getElementById("item_removed").style.display ="block";
-
-                      setTimeout(function(){
-                        document.getElementById("item_removed").style.display ="none";
-
-                      },1000);
-
-                      
-
-
-
-                    }
-
-
-
-
-
-            }
-
-
-
-
-        </script>
+       
         
    
     </body>
