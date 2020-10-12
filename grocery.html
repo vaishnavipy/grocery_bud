@@ -114,7 +114,7 @@
                     color: maroon    ;
                 }
                 #added{
-                    background-color: 	#90EE90;
+                    background-color: lightgreen;
                     letter-spacing: 3px;
                     font-size: 10px;
                     color:darkgreen;
@@ -143,6 +143,21 @@
 
                 }
 
+                #item_removed{
+                    letter-spacing: 3px;
+                    font-size: 10px;
+                    background-color: #ffcccb;
+                    color:darkred;
+                    padding: 5px;
+                    position: absolute;
+                    width: 80%;
+                    margin: auto;
+                    left:60;
+                    display: none;
+                   
+
+                }
+
         </style>
         
     
@@ -157,6 +172,8 @@
             <div id="added">ITEM ADDED TO THE LIST</div>
 
             <div id="empty">EMPTY LIST</div>
+
+            <div id="item_removed">ITEM REMOVED</div>
 
             <h1>GROCERY BUD</h1>
           <input type="text" id="text" placeholder="eg:eggs"><input type="submit" value="Submit" id="submit"> 
@@ -194,6 +211,8 @@
 
                                 delete_icon.setAttribute("class","delete");
 
+                                delete_icon.addEventListener("click",remove_item);
+
                                 para.appendChild(delete_icon);
                         para.appendChild(edit_icon);
                        
@@ -206,6 +225,13 @@
                       container.insertBefore(para,container.lastElementChild);
 
                       container.lastElementChild.style.display = "block"
+
+                      document.getElementById("added").style.display ="block";
+
+                      setTimeout(function(){
+                        document.getElementById("added").style.display ="none";
+
+                      },1000);
                     
                     }
 
@@ -218,14 +244,40 @@
 
                        items.forEach(elm => elm.remove());
 
-                       this.style.display = "none";
+                       document.getElementById("empty").style.display ="block";
+                       let that = this;
+
+                        setTimeout(function(){
+
+                        document.getElementById("empty").style.display ="none";
+                        that.style.display = "none";
+                       },1000);
+
+                       
+                    }
+
+                   let delete_elms = document.querySelectorAll(".delete");
+
+                   delete_elms.forEach(elm => elm.addEventListener("click",remove_item));
+                    console.log(delete_elms)
+
+                    function remove_item(){
+                        console.log("clicked")
+
+                        this.parentNode.remove();
+
+                        document.getElementById("item_removed").style.display ="block";
+
+                      setTimeout(function(){
+                        document.getElementById("item_removed").style.display ="none";
+
+                      },1000);
+
+                      
 
 
 
                     }
-
-
-
 
 
 
