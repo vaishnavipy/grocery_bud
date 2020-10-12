@@ -28,6 +28,10 @@
                 border-radius: 10px;
                 padding: 20px 20px;
                 overflow: hidden;
+                transform: translate(0,50%);
+                height: 30vh;
+                box-shadow: 8px 8px 16px grey;
+                position: relative;
             }
 
             #container h1{
@@ -35,7 +39,7 @@
                 letter-spacing: 4px;
                 color:#063251;
                 font-family: 'Roboto', sans-serif;
-
+                
             }
            
             #text{
@@ -46,7 +50,7 @@
                 border-top-left-radius: 10px;
                 border-bottom-left-radius: 10px;
                 font-size: 15px;
-                padding: 10px 0;
+                padding: 10px 10px;
                 margin: 0;
 
 
@@ -63,8 +67,18 @@
                 border-top-right-radius: 10px;
                 border-bottom-right-radius: 10px;
                 letter-spacing: 3px;
+                cursor: pointer;
 
                 }
+
+                #submit:hover{
+
+                    color:white;
+                    background-color: #69bfc9;
+
+                    }
+
+                    
                 .edit{
                     color:green;
                     padding: 10px 5px;
@@ -93,6 +107,35 @@
                 #container h5:hover{
                     color: maroon    ;
                 }
+                #added{
+                    background-color: 	#90EE90;
+                    letter-spacing: 3px;
+                    font-size: 10px;
+                    color:darkgreen;
+                    padding: 5px;
+                    position: absolute;
+                    width: 80% ;
+                    margin: auto;
+                    left:60;
+                    display: none;
+                    
+
+                    }
+
+                #empty{
+                    letter-spacing: 3px;
+                    font-size: 10px;
+                    background-color: #ffcccb;
+                    color:darkred;
+                    padding: 5px;
+                    position: absolute;
+                    width: 80%;
+                    margin: auto;
+                    left:60;
+                    display: none;
+                   
+
+                }
 
         </style>
         
@@ -104,6 +147,10 @@
     <body>
       
         <div id="container" >
+
+            <div id="added">ITEM ADDED TO THE LIST</div>
+
+            <div id="empty">EMPTY LIST</div>
 
             <h1>GROCERY BUD</h1>
            <form> <input type="text" id="text" placeholder="eg:eggs"><input type="submit" value="Submit" id="submit"> </form>
@@ -117,6 +164,7 @@
 
         <script>
 
+            
 
 
 
