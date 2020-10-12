@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="grocery.css"> 
        <script src="grocery.js"></script>  
        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/031e3862f6.js"></script>
 
         <style>
@@ -25,7 +26,8 @@
                 margin: auto;
                 text-align: center;
                 border-radius: 10px;
-                padding: 10px;
+                padding: 20px 20px;
+                overflow: hidden;
             }
 
             #container h1{
@@ -37,7 +39,7 @@
             }
            
             #text{
-                width: 75%;
+                width: 80%;
                 background-color: #F1F5F8;
                 border:0.5px solid #F1F5F8;
                 
@@ -63,6 +65,34 @@
                 letter-spacing: 3px;
 
                 }
+                .edit{
+                    color:green;
+                    padding: 10px 5px;
+                    float:right;
+                }
+                .delete{
+                    color:red;
+                    padding:10px 5px;
+                    float:right;
+                }
+                .items{
+                    display: none;
+                    width: 95%;
+                    padding-top: 20px;
+                   
+                }
+                #container h5{
+                    letter-spacing: 4px;
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 300;
+                    color:red;
+                    cursor: pointer;
+                    clear: both;
+                    display: none;
+                }
+                #container h5:hover{
+                    color: maroon    ;
+                }
 
         </style>
         
@@ -78,7 +108,9 @@
             <h1>GROCERY BUD</h1>
            <form> <input type="text" id="text" placeholder="eg:eggs"><input type="submit" value="Submit" id="submit"> </form>
 
+           <p class="items"><span class="delete"><i class="fa fa-trash"></i></span><span class="edit"><i class="fa fa-edit"></i></span></p>
 
+            <h5>Clear Items</h5>
            
         </div>
 
