@@ -27,9 +27,10 @@
                 text-align: center;
                 border-radius: 10px;
                 padding: 20px 20px;
+                padding-bottom: 40px;
                 overflow: hidden;
-                transform: translate(0,50%);
-                height: 30vh;
+                margin-top: 25vh;
+                height: auto;
                 box-shadow: 8px 8px 16px grey;
                 position: relative;
             }
@@ -83,19 +84,24 @@
                     color:green;
                     padding: 10px 5px;
                     float:right;
+                    cursor: pointer;
                 }
                 .delete{
                     color:red;
                     padding:10px 5px;
                     float:right;
+                    cursor: pointer;
                 }
                 .items{
-                    display: none;
+                    
                     width: 95%;
                     padding-top: 20px;
+                   text-align: left;
+                   padding: 10px;
+                    
                    
                 }
-                #container h5{
+                #clear{
                     letter-spacing: 4px;
                     font-family: 'Roboto', sans-serif;
                     font-weight: 300;
@@ -104,7 +110,7 @@
                     clear: both;
                     display: none;
                 }
-                #container h5:hover{
+                #clear:hover{
                     color: maroon    ;
                 }
                 #added{
@@ -153,18 +159,79 @@
             <div id="empty">EMPTY LIST</div>
 
             <h1>GROCERY BUD</h1>
-           <form> <input type="text" id="text" placeholder="eg:eggs"><input type="submit" value="Submit" id="submit"> </form>
+          <input type="text" id="text" placeholder="eg:eggs"><input type="submit" value="Submit" id="submit"> 
 
-           <p class="items"><span class="delete"><i class="fa fa-trash"></i></span><span class="edit"><i class="fa fa-edit"></i></span></p>
+         <!--  <p class="items"><span class="delete"><i class="fa fa-trash"></i></span><span class="edit"><i class="fa fa-edit"></i></span></p> -->
 
-            <h5>Clear Items</h5>
+           <h5 id="clear">Clear Items</h5> 
            
         </div>
 
 
         <script>
 
-            
+            window.onload = function(){
+
+
+                    document.getElementById("submit").onclick = function(){
+
+                            let value = document.getElementById("text").value;
+
+                            if(value!= ""){
+
+                                document.getElementById("text").value ="";
+                           let para = document.createElement("P");
+                           let txtnode = document.createTextNode(value);
+
+                           let edit_icon = document.createElement("SPAN");
+                       edit_icon.innerHTML ='<i class="fa fa-edit"></i>';
+
+                       let delete_icon = document.createElement("SPAN");
+                       delete_icon.innerHTML='<i class="fa fa-trash"></i>';
+
+                           para.appendChild(txtnode);
+                        edit_icon.setAttribute("class","edit");
+
+                                delete_icon.setAttribute("class","delete");
+
+                                para.appendChild(delete_icon);
+                        para.appendChild(edit_icon);
+                       
+
+                        para.setAttribute("class","items");
+
+                       // document.getElementById("container").innerHTML += para.innerHTML
+                       let container =  document.getElementById("container");
+
+                      container.insertBefore(para,container.lastElementChild);
+
+                      container.lastElementChild.style.display = "block"
+                    
+                    }
+
+                    }
+
+                    document.getElementById("container").lastElementChild.onclick = function(){
+
+
+                       let items =  document.querySelectorAll(".items");
+
+                       items.forEach(elm => elm.remove());
+
+                       this.style.display = "none";
+
+
+
+                    }
+
+
+
+
+
+
+
+
+            }
 
 
 
